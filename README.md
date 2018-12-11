@@ -11,4 +11,4 @@ This repository is a recruting test that allows users to create and list issues 
 
 <br />
 <br />
-Now you're able to see the index 🎉
+Now you're able to see the index 🙌🎉

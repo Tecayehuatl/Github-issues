@@ -2,13 +2,14 @@
   "name": "linio",
   "version": "1.0.0",
   "description": "Linio recruting test",
-  "main": "webpack.config.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot"
-  },
+  "main": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tecayehuatl/Linio.git"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "vue": "^2.5.17",
@@ -64,9 +65,6 @@
     "frontend"
   ],
   "author": "Enrique Tecayehuatl",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Tecayehuatl/Linio/issues"
-  },
-  "homepage": "https://github.com/Tecayehuatl/Linio#readme"
+  "homepage": "https://github.com/Tecayehuatl/Linio#readme",
+  "license": "MIT"
 }

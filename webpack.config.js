@@ -23,6 +23,14 @@ module.exports = {
                 use: "babel-loader",
                 include: /(clienApp)/,
                 exclude: /(node_modules)/
+            },
+            {
+                test: /\.(s*)css$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ]
             }
         ]
     },
@@ -30,6 +38,7 @@ module.exports = {
         extensions: ['.js', '.vue'],
         alias:{
             'vue$': 'vue/dist/vue',
+            'css': path.resolve(__dirname, './assets/css')
         }
     },
     devServer: {

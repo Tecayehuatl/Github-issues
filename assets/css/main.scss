@@ -1,0 +1,77 @@
+@import 'variables';
+
+body{
+    background-color: $white; 
+    font-size: 12px;
+    font-family: 'Arial';
+    margin: 0;
+    padding: 0;
+}
+
+.o-header{
+    padding: 1em;
+    background-color: $negro-diamante;
+}
+
+.o-main{
+    padding: 1em;
+}
+
+.o-footer{
+    padding: 1em;
+    border-top: 1px solid $gris-atardecer;
+}
+
+.c-panel{
+    border-radius: 4px;
+    border: 1px solid $verde-bandera;
+
+    .c-panel__header{
+        background-color: $verde-pasto;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        color: $white;
+        padding: .5em;
+    }
+
+    .c-panel__body{
+        padding: .5em;
+    }
+
+    .c-panel__footer{
+        padding: .5em;
+    }
+}
+
+.c-button{
+    border: 1px solid transparent;
+    border-radius: .25em;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;    
+    text-align: center;    
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    user-select: none;    
+    vertical-align: middle;    
+    white-space: nowrap;    
+    -webkit-user-select: none;    
+    -moz-user-select: none;    
+    -ms-user-select: none;    
+}
+
+.c-input{
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow: visible;
+    outline-offset: -2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    width: 100%;
+}

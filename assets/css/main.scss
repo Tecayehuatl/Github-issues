@@ -1,5 +1,9 @@
 @import 'variables';
 
+/*
+Me quede en ver como separo por porcentajes los espacios en o-main, es decir cuanto porcentaje le voy a dar al lado izquierdo y derecho en términos porcentuales
+*/
+
 body{
     background-color: $white; 
     font-size: 12px;
@@ -7,24 +11,43 @@ body{
     margin: 0;
     padding: 0;
 }
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.app-main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
 .o-header{
-    padding: 1em;
     background-color: $negro-diamante;
+    color: $gris;
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    min-height: 2em;
+    padding: 1em;
 }
 
 .o-main{
+    flex: 1;
     padding: 1em;
 }
 
 .o-footer{
     padding: 1em;
-    border-top: 1px solid $gris-atardecer;
+    text-align: center;
+    box-shadow: 0 0 8px $gris-atardecer;
+    margin-top: 2em;
 }
 
 .c-panel{
     border-radius: 4px;
     border: 1px solid $verde-bandera;
+    margin-bottom: 2em;
 
     .c-panel__header{
         background-color: $verde-pasto;
@@ -68,10 +91,29 @@ body{
     border-radius: .25rem;
     display: block;
     font-size: 1rem;
+    
     line-height: 1.5;
     overflow: visible;
     outline-offset: -2px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     -webkit-appearance: none;
     width: 100%;
+}
+
+
+@media screen and(min-width: 768px){
+    
+    .o-main{
+        display: flex;
+
+        .o-main__left{
+            flex-grow: 1;
+            padding: 1em;
+        }   
+
+        .o-main__right{
+            flex-grow: 3;
+            padding: 1em;
+        }   
+    }
 }

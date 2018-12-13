@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
     mode: 'development',
-    entry: "./assets/js/app.js",
+    entry: "./app.js",
     output: {
         path: path.resolve(__dirname, "./dist"),
         publicPath: "/dist/",
@@ -15,13 +15,13 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: "vue-loader",
-                include: /(clientApp)/
+                exclude: /(node_modules)/
                 
             },
             {
                 test: /\.js$/,
                 use: "babel-loader",
-                include: /(clienApp)/,
+                
                 exclude: /(node_modules)/
             },
             {
@@ -38,7 +38,9 @@ module.exports = {
         extensions: ['.js', '.vue'],
         alias:{
             'vue$': 'vue/dist/vue',
-            'css': path.resolve(__dirname, './assets/css')
+            'css': path.resolve(__dirname, './assets/css'),
+            'views': path.resolve(__dirname, './views'),
+            'store': path.resolve(__dirname, './store')
         }
     },
     devServer: {
@@ -48,6 +50,7 @@ module.exports = {
         }
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()    
+        new webpack.HotModuleReplacementPlugin(),
+        new VueLoaderPlugin()
     ]
 }

@@ -6,7 +6,7 @@ Me quede en ver como separo por porcentajes los espacios en o-main, es decir cua
 
 body{
     background-color: $white; 
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'Arial';
     margin: 0;
     padding: 0;
@@ -24,7 +24,7 @@ body, html {
 
 .o-header{
     background-color: $negro-diamante;
-    color: $gris;
+    color: $gris-rata;
     display: flex;
     align-items: center;
     font-size: 1.5em;
@@ -40,7 +40,7 @@ body, html {
 .o-footer{
     padding: 1em;
     text-align: center;
-    box-shadow: 0 0 8px $gris-atardecer;
+    box-shadow: 0 0 8px $gris-rata;
     margin-top: 2em;
 }
 
@@ -81,6 +81,11 @@ body, html {
     -webkit-user-select: none;    
     -moz-user-select: none;    
     -ms-user-select: none;    
+
+    &.c-button--green{
+        background-color: $verde-olivo;
+        color: $gris;
+    }
 }
 
 .c-input{
@@ -90,19 +95,26 @@ body, html {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     display: block;
-    font-size: 1rem;
-    
+    font-size: 1rem;    
     line-height: 1.5;
     overflow: visible;
     outline-offset: -2px;
+    padding: .375rem .75rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     -webkit-appearance: none;
     width: 100%;
+
+    &.c-input--small{
+        width: 180px;
+    }
 }
 
 
 @media screen and(min-width: 768px){
-    
+    body{
+        font-size: 16px;
+    }
+
     .o-main{
         display: flex;
 
@@ -115,5 +127,17 @@ body, html {
             flex-grow: 3;
             padding: 1em;
         }   
+    }
+
+    .c-panel{
+        &.c-panel--md{
+            width: 70%;
+        }
+    }
+}
+
+@media screen and(min-width: 768px){
+    body{
+        font-size: 14px;
     }
 }

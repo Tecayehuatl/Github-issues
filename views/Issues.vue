@@ -21,7 +21,10 @@
                     Issues obtenidos 
                 </div>
                 <div class="c-panel__body">
-                    <ul>
+                    <p v-if="issues.length === 0">
+                        No se encontraron Issues en el repositorio.
+                    </p>
+                    <ul v-else>
                         <li v-for="issue in issues">{{issue.title}}</li>
                     </ul>
                 </div>
@@ -34,7 +37,8 @@ export default {
         return {
             username: '',
             repository: '',
-            issues: []
+            issues: [],
+            message: ''
         }
     },
       methods: {
@@ -42,7 +46,9 @@ export default {
             //fetching all issues from an especific username & repository
             fetch('https://api.github.com/repos/' + this.username + '/' + this.repository + '/issues')
             .then(response => response.json())
-            .then(issues => this.issues = issues)
+            .then(issues => {
+                if(issues.length > 0) this.issues = issues                
+            })
             .catch(function(response){
                 console.log(reponse)
             })

@@ -112,7 +112,7 @@ body, html {
 .c-menu{
     .c-menu__item{
         cursor: pointer;
-        
+        padding: .5em;
         :hover{
             color: $verde-pasto;
         }

@@ -109,6 +109,15 @@ body, html {
     }
 }
 
+.c-menu{
+    .c-menu__item{
+        cursor: pointer;
+        
+        :hover{
+            color: $verde-pasto;
+        }
+    }
+}
 
 @media screen and(min-width: 768px){
     body{

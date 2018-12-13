@@ -13,21 +13,26 @@
         </header>
         <main class="o-main">
             <div class="o-main__left">
-                <div class="c-panel">
+                <div class="c-panel c-panel--sm">
                     <div class="c-panel__header">
                         Meú
                     </div>
                     <div class="c-panel__body">
                         <ol class="c-menu">
-                            <li class="c-menu__item" v-for="component in componentsArray">
-                                <div @click="swapComponent(component)">{{component}}</div>
+                            <li class="c-menu__item" @click="component = 'issues'">
+                                Obtener todos los Issues
+                            </li>
+                            <li class="c-menu__item" @click="component = 'postissue'">
+                                Añadir un nuevo Issue
                             </li>
                         </ol>
                     </div>                    
                 </div>
             </div>
             <div class="o-main__right">
-                <div :is="currentComponent"></div>   
+                <component :is="component">
+                    <img class="o-main__background-image" src="/assets/img/octocat.png" alt="octocat" />
+                </component>
             </div>
         </main>
         <footer class="o-footer">

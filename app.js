@@ -12,13 +12,7 @@ Vue.component('postissue', PostIssue)
 new Vue({
     store,
     data:{
-        currentComponent: null,
-        componentsArray: ['issues', 'postissue']
-    },    
-    methods: {
-        swapComponent(component){
-            this.currentComponent = component
-        }
+        component: 'issue'
     }
 }).$mount('#app')
 

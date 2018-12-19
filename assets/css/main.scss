@@ -1,9 +1,5 @@
 @import 'variables';
 
-/*
-Me quede en ver como separo por porcentajes los espacios en o-main, es decir cuanto porcentaje le voy a dar al lado izquierdo y derecho en términos porcentuales
-*/
-
 body{
     background-color: $white; 
     font-size: 14px;
@@ -11,11 +7,17 @@ body{
     margin: 0;
     padding: 0;
 }
+
 body, html {
     height: 100%;
     margin: 0;
 }
 
+input[type="text"]:disabled {
+    background: $gris-disabled;
+    cursor: not-allowed;
+  }
+  
 .app-main{
     display: flex;
     flex-direction: column;

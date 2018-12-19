@@ -4,12 +4,20 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    test: 'tes'
+    githubUsername: 'Tecayehuatl',
+    githubRepository: 'Linio'
 }
 
 const getters = {}
 
-const mutations = {}
+const mutations = {
+    setNewGithubUserName(state, value){
+        state.githubUsername = value
+    },
+    setNewGithubRepository(state, value){
+        state.githubRepository = value
+    }
+}
 
 export default new Vuex.Store({
     state, 

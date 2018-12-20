@@ -26,7 +26,7 @@ input[type="text"]:disabled {
 
 .o-header{
     background-color: $negro-diamante;
-    color: $gris-rata;
+    color: $gris;
     display: flex;
     align-items: center;
     font-size: 1.5em;
@@ -49,7 +49,7 @@ input[type="text"]:disabled {
 .o-footer{
     padding: 1em;
     text-align: center;
-    box-shadow: 0 0 8px $gris-rata;
+    box-shadow: 0 0 8px $gris;
     margin-top: 2em;
 }
 
@@ -124,6 +124,19 @@ input[type="text"]:disabled {
         padding: .5em;
         :hover{
             color: $verde-pasto;
+        }
+    }
+
+    &.c-menu--issues{
+        padding: 0;
+        margin: 0;
+        .c-menu__item{
+            list-style-type: none;
+            cursor: pointer;
+            &:nth-child(even){
+                background-color: $verde-olivo;
+            
+            }
         }
     }
 }

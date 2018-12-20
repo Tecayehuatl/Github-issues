@@ -4,8 +4,8 @@
             <div class="c-panel__header">
                 Obtener Issues
             </div>
-            <div class="c-panel__body">
-                <label>Usuario de Github</label>
+            <div class="c-panel__body">                
+                <label>Usuario de Github para obtener los Issues</label>
                 <input type="text" class="c-input c-input--small" v-model="$store.state.githubUsername" @input="setNewGithubUserName">
                 <br>
                 <label>Nombre del repositorio</label>
@@ -16,18 +16,18 @@
                 </button>
             </div>
         </div>
-        <div class="c-panel c-panel--md" v-if="issues.length > 0">
-                <div class="c-panel__header">
-                    Issues obtenidos 
-                </div>
-                <div class="c-panel__body">
-                    <p v-if="issues.length === 0">
-                        No se encontraron Issues en el repositorio.
-                    </p>
-                    <ul v-else>
-                        <li v-for="issue in issues">{{issue.title}}</li>
-                    </ul>
-                </div>
+        <div class="c-panel c-panel--md">
+            <div class="c-panel__header">
+                Issues obtenidos 
+            </div>
+            <div class="c-panel__body">
+                <p v-if="hasIssues === false">
+                    No se encontraron Issues en el repositorio.
+                </p>
+                <ul v-if="issues.length > 0" class="c-menu c-menu--issues">
+                    <li class="c-menu__item" v-for="issue in issues" :key="issue.node_id">{{issue.title}}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -36,9 +36,10 @@ import { mapState } from 'vuex'
 
 export default {
     data(){
-        return {
+        return {            
             issues: [],
-            message: ''
+            message: '',
+            hasIssues: null
         }
     },
     computed: {
@@ -49,10 +50,17 @@ export default {
     },
     methods: {
         getIssuesFromGithub(){
-            //fetching all issues from an especific username & repository
-            fetch(`https://api.github.com/repos/${this.githubUsername}/${this.githubRepository}/issues`)
-            .then(response => response.json())
-            .then(issues => { if(issues.length > 0) this.issues = issues })
+            this.$http.get(`https://api.github.com/repos/${this.$store.state.githubUsername}/${this.$store.state.githubRepository}/issues`)
+            .then(response => { 
+                if(response.data.length > 0) {
+                    this.issues = response.data; 
+                    this.hasIssues = true;
+                }
+                else if(response.data.length === 0) {
+                    this.issues = []
+                    this.hasIssues = false
+                }
+            })
             .catch(function(error){ console.log(error) })
         },
         setNewGithubUserName(event){

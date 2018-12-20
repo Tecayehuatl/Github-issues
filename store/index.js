@@ -4,8 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    githubUsername: 'Tecayehuatl',
-    githubRepository: 'Linio'
+    githubUsername: '',
+    githubRepository: ''
 }
 
 const getters = {}

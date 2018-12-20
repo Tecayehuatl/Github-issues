@@ -5,10 +5,17 @@
                 Publicar un Issue
             </div>
             <div class="c-panel__body">
-                <label>Nombre del usuario</label>
+                <label>Tu nombre de usuario de Github</label>
+                <input type="text" class="c-input c-input--small" v-model="ownGithubUsername">
+                <br>
+                <label>Contraseña de tu cuenta de Github</label>
+                <input type="password" class="c-input c-input--small" v-model="ownGithubPassword">
+                <br>
+                <br>
+                <label>Nombre del usuario a publicar un Issue</label>
                 <input type="text" class="c-input c-input--small" v-model="this.$store.state.githubUsername" disabled>
                 <br>
-                <label>Nombre del repositorio</label>
+                <label>Nombre del repositorio a publicar un Issue</label>
                 <input type="text" class="c-input c-input--small" v-model="this.$store.state.githubRepository" disabled>
                 <br>
                 <br>
@@ -23,45 +30,46 @@
                 </button>
             </div>
         </div>
-        <div class="c-panel c-panel--md">
+        <div class="c-panel c-panel--md" v-if="issues.length >0">
             <div class="c-panel__header">
                 Todos los Issues
             </div>
             <div class="c-panel__body">
-                <ul>
-                    <!-- <li>Issue list</li> -->
+                <ul class="c-menu c-menu--issues">
+                    <li class="c-menu__item" v-for="issue in issues" :key="issue.node_id">{{issue.title}}</li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
 <script>
-
 export default {
     data(){
         return {
-            issueTitle: 'Issue title test',
-            issueBody: 'Issue body test',
+            ownGithubUsername: '',
+            ownGithubPassword: '',
+            issues: [],
+            issueTitle: '',
+            issueBody: '',
+            urlGithub: `https://api.github.com/repos/${this.$store.state.githubUsername}/${this.$store.state.githubRepository}/issues`
         }
     },
     methods: {
         postIssue(){
-            let url =  `https://api.github.com/repos/${this.username}/${this.repositoryName}/issues`
-
-            let dataIssue= { "title": this.issueTitle, "body": this.issueBody }
-
-            //     "headers": {
-            //         "Access-Control-Allow-Origin": "*",
-            //         "Access-Control-Allow-Credentials": true,
-            //         "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-            //         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-            //         "application/vnd.github.v3.html+json"
-            this.$http.post(url, {
-                    data: JSON.stringify(dataIssue)
+            this.$http.defaults.auth = {"username": this.ownGithubUsername, "password": this.ownGithubPassword};
+            this.$http.post(this.urlGithub, { "title": this.issueTitle, "body": this.issueBody })
+                .then(response => {
+                    this.getIssuesFromGithub()
+                    this.issueTitle = ''
+                    this.issueBody = ''
                 })
-                .then(response => console.log(response))
                 .catch(error => console.log(error))
-        }
+        },
+        getIssuesFromGithub(){
+            this.$http.get(this.urlGithub)
+            .then(response => { if(response.data.length > 0) this.issues = response.data })
+            .catch(function(error){ console.log(error) })
+        },
     }
 }
 </script>
